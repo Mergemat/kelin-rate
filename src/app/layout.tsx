@@ -3,6 +3,8 @@ import "~/styles/globals.css";
 import { GeistSans } from "geist/font/sans";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import { AuthProvider } from "./providers";
+import { TopNav } from "./_components/topnav";
 
 export const metadata = {
   title: "Create T3 App",
@@ -17,16 +19,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable} dark`}>
-      <body>
-        <TRPCReactProvider>
-          <div className="flex min-h-screen w-full flex-col bg-muted/40">
-            <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-              <h1 className="text-3xl font-bold"><span className="text-primary">Kelin</span>Rate</h1>
-            </header>
-            {children}
-          </div>
-        </TRPCReactProvider>
-      </body>
+      <AuthProvider>
+        <body>
+          <TRPCReactProvider>
+            <div className="flex min-h-screen w-full flex-col">
+              <TopNav />
+              {children}
+            </div>
+          </TRPCReactProvider>
+        </body>
+      </AuthProvider>
     </html>
   );
 }

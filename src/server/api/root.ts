@@ -1,3 +1,4 @@
+import { type inferRouterOutputs } from "@trpc/server";
 import { postRouter } from "~/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
@@ -21,3 +22,4 @@ export type AppRouter = typeof appRouter;
  *       ^? Post[]
  */
 export const createCaller = createCallerFactory(appRouter);
+export type RouterOutputs = inferRouterOutputs<AppRouter>;

@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable} dark`}>
       <body>
         <TRPCReactProvider>
-          <div className="flex min-h-screen w-full flex-col">
+          <div className="flex min-h-screen w-full flex-col bg-muted/40">
             <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
               <h1 className="text-3xl font-bold"><span className="text-primary">Kelin</span>Rate</h1>
             </header>

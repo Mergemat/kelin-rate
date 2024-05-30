@@ -13,31 +13,30 @@ import { cn } from "~/lib/utils";
 
 export default async function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-start text-white">
-      <div className="container flex max-w-6xl flex-col items-start gap-12 px-4 py-8">
-        <h1 className="text-4xl font-extrabold tracking-tight sm:text-7xl">
+    <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
+      <div className="flex flex-col items-start gap-12 lg:col-span-2">
+        <h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl">
           Ori and the Will of the Wisps
         </h1>
-        <div className="flex w-full flex-col gap-4 lg:flex-row">
+        <div className="flex w-full flex-col gap-4">
           <img
             src="https://files.vgtimes.ru/download/posts/2020-04/1587708202_wp3971146.jpg"
-            className="h-48 w-full max-w-5xl rounded-xl border border-foreground/10 object-cover sm:h-96"
+            className="h-60 w-full rounded-xl border border-foreground/10 object-cover sm:h-96"
           />
-          <div className="flex flex-col justify-between gap-5 sm:flex-row lg:w-[350px] lg:flex-col">
+          <div className="flex flex-col justify-between gap-5 sm:flex-row">
             <Card className="w-full">
               <CardHeader>
                 <CardDescription>Оценка Келина (AI)</CardDescription>
-                <CardTitle className="text-4xl">3</CardTitle>
               </CardHeader>
               <CardFooter>
-                <div className="flex gap-6 lg:w-full lg:justify-between">
+                <div className="flex gap-6 xl:w-full xl:justify-between">
                   {Array(5)
                     .fill(0)
                     .map((_, i) => (
                       <Star
                         key={i}
                         className={cn(
-                          "fill-secondary stroke-secondary",
+                          "fill-secondary md:w-8 md:h-8 stroke-secondary",
                           i < 3 && "fill-primary stroke-primary",
                         )}
                       />
@@ -48,17 +47,16 @@ export default async function Home() {
             <Card className="w-full">
               <CardHeader>
                 <CardDescription>Оценка Пользователей</CardDescription>
-                <CardTitle className="text-4xl">3</CardTitle>
               </CardHeader>
               <CardFooter>
-                <div className="flex gap-6 lg:w-full lg:justify-between">
+                <div className="flex gap-6 xl:w-full xl:justify-between">
                   {Array(5)
                     .fill(0)
                     .map((_, i) => (
                       <Star
                         key={i}
                         className={cn(
-                          "fill-secondary stroke-secondary",
+                          "fill-secondary md:w-8 md:h-8 stroke-secondary",
                           i < 3 && "fill-primary stroke-primary",
                         )}
                       />

@@ -1,13 +1,5 @@
-import { Minus, Plus, Star } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
-import { cn } from "~/lib/utils";
+import { Minus, Plus } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { ReviewCard } from "./review-card";
 
 export function Info() {
@@ -28,9 +20,9 @@ export function Info() {
       </div>
       <Card className="w-full">
         <CardHeader>
-          <CardTitle className="text-4xl">Саммари</CardTitle>
+          <CardTitle className="text-2xl">Саммари</CardTitle>
         </CardHeader>
-        <CardContent className="text-xl tracking-wider lg:text-2xl lg:font-light lg:leading-9">
+        <CardContent className="text-lg tracking-wider lg:text-xl lg:font-light lg:leading-9">
           Несмотря на красивую графику, трогательный сюжет и эпичные босс-файты,
           игра имеет множество недостатков в геймплее и дизайне уровней. Боевая
           система и платформинг упрощены и неинтересны, баланс сломан, а
@@ -42,56 +34,28 @@ export function Info() {
       <Points points={[]} />
 
       <div className="grid w-full grid-cols-1 gap-5 lg:grid-cols-2">
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-4xl">
-              <Plus strokeWidth={5} className="h-6 w-6 stroke-green-200" />
-              Плюсы
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4 text-xl leading-8">
-            {[
-              "Красивая графика",
-              "Трогательный сюжет",
-              "Эпичные босс-файты с несколькими фазами и изменением окружения",
-            ].map((text, i) => (
-              <div
-                className="flex items-center gap-6 rounded-xl border border-foreground/10 bg-accent p-4"
-                key={i}
-              >
-                <p className="text-lg font-medium text-secondary-foreground lg:w-11/12 lg:text-xl lg:tracking-wide">
-                  {text}
-                </p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-4xl">
-              <Minus strokeWidth={5} className="h-6 w-6 stroke-destructive" />
-              Минусы
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col gap-4 text-xl leading-8">
-            {[
-              "Упрощенная и неинтересная боевая система",
-              "Скучный платформинг из-за обилия способностей",
-              "Сломанный баланс, игра не наказывает за ошибки",
-              "Бесполезный хаб и однообразные квесты",
-              "Плохая оптимизация и обилие багов",
-            ].map((text, i) => (
-              <div
-                className="flex items-center gap-6 rounded-xl border border-foreground/10 bg-accent p-4"
-                key={i}
-              >
-                <p className="text-lg font-medium text-secondary-foreground lg:w-11/12 lg:text-xl lg:tracking-wide">
-                  {text}
-                </p>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+        <PointsWithIcon
+          label="Плюсы"
+          icon={<Plus strokeWidth={5} className="h-6 w-6 stroke-green-200" />}
+          points={[
+            "Красивая графика",
+            "Трогательный сюжет",
+            "Эпичные босс-файты с несколькими фазами и изменением окружения",
+          ]}
+        />
+        <PointsWithIcon
+          label="Минусы"
+          icon={
+            <Minus strokeWidth={5} className="h-6 w-6 stroke-destructive" />
+          }
+          points={[
+            "Упрощенная и неинтересная боевая система",
+            "Скучный платформинг из-за обилия способностей",
+            "Сломанный баланс, игра не наказывает за ошибки",
+            "Бесполезный хаб и однообразные квесты",
+            "Плохая оптимизация и обилие багов",
+          ]}
+        />
       </div>
     </div>
   );
@@ -101,7 +65,7 @@ function Points({ points }: { points: string[] }) {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-4xl">Поинты</CardTitle>
+        <CardTitle className="text-2xl">Поинты</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">
         {[
@@ -114,10 +78,43 @@ function Points({ points }: { points: string[] }) {
           "Плохая оптимизация и огромное количество багов",
         ].map((text, i) => (
           <div
-            className="font-base flex w-fit gap-4 rounded-xl text-xl tracking-wider text-secondary-foreground lg:text-2xl lg:font-light lg:leading-9"
+            className="font-base flex w-fit gap-4 rounded-xl text-lg tracking-wider text-secondary-foreground lg:text-xl lg:font-light lg:leading-9"
             key={i}
           >
             • {text}
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}
+
+function PointsWithIcon({
+  icon,
+  points,
+  label,
+}: {
+  icon: React.ReactNode;
+  points: string[];
+  label: string;
+}) {
+  return (
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2 text-2xl">
+          {icon}
+          {label}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4 text-xl leading-8">
+        {points.map((text, i) => (
+          <div
+            className="flex items-center gap-6 rounded-xl border border-foreground/10 bg-accent p-4"
+            key={i}
+          >
+            <p className="text-lg text-secondary-foreground lg:w-11/12 lg:text-xl lg:tracking-wide">
+              {text}
+            </p>
           </div>
         ))}
       </CardContent>

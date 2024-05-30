@@ -1,7 +1,6 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { sql } from "drizzle-orm";
 import { index, int, sqliteTableCreator, text } from "drizzle-orm/sqlite-core";
 
 /**
@@ -18,11 +17,14 @@ export const posts = createTable(
     id: int("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     name: text("name", { length: 256 }),
     createdAt: int("created_at", { mode: "timestamp" })
-      .default(sql`CURRENT_TIMESTAMP`)
+      .$defaultFn(() => new Date())
       .notNull(),
-    updatedAt: int("updatedAt", { mode: "timestamp" }),
+    updatedAt: int("updated_at", { mode: "timestamp" })
+      .$defaultFn(() => new Date())
+      .$onUpdateFn(() => new Date())
+      .notNull(),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
-  })
+  }),
 );
